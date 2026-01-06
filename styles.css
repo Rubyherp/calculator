@@ -1,0 +1,39 @@
+*,
+*::before,
+*::after {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --orange: #FF9500;
+    --grey: #505050;
+    --black: #1C1C1C;
+    --white: #D4D4D2;
+}
+
+.container {
+    background-color: rgb(180, 119, 119);
+    height: 100vh;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px
+}
+
+.header {
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--orange);
+}
+
+.calculator {
+    height: 90%;
+    width: 30%;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    background-color: var(--grey);
+}
