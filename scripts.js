@@ -11,15 +11,7 @@ const display = document.querySelector('.display');
 
 nums.forEach((btn) => {
     btn.addEventListener('click', (e) => {
-        if (!op) {
-            num1 += e.target.innerText;
-            logResult();
-            logDisplay();
-        } else if (num1 && op) {
-            num2 += e.target.innerText;
-            logResult();
-            logDisplay();
-        }
+        return numsHandler(e);
     })
 });
 
@@ -38,6 +30,29 @@ control.forEach((btn) => {
         return checkControl(e);
     } )
 })
+
+
+function numsHandler(e) {
+    if (e.target.innerText === '.') {
+        if (!num1.includes('.') && !op){
+            num1 = num1 + '.';
+            logDisplay();
+        } else if (num1 && op) {
+            if (!num2.includes('.')){
+                num2 = num2 + '.';
+                logDisplay();
+            }
+        }
+    } else if (!op) {
+        num1 += e.target.innerText;
+        logResult();
+        logDisplay();
+    } else if (num1 && op) {
+        num2 += e.target.innerText;
+        logResult();
+        logDisplay();
+    }
+}
 
 function checkControl(event) {
     if (event.target.innerText === 'del') {
@@ -72,6 +87,14 @@ function checkControl(event) {
             res = operate(operator, firstNum, secondNum);
             logResult();
             logDisplay();
+        } else if (op === '%') {
+            const operator = op;
+            const firstNum = Number(num1);
+            const secondNum = 1;
+            reset()
+            res = operate(operator, firstNum, secondNum);
+            logResult();
+            logDisplay();
         }
     }
 };
@@ -90,7 +113,7 @@ function operate(operator, num1, num2) {
         return num1 / num2;
     } 
     else if (operator === '%') {
-        return num1 % num2;
+        return (num1 * num2) / 100;
     } 
 }
 
@@ -109,7 +132,7 @@ function logResult() {
 
 function logDisplay() {
     if (num1 || op || num2) {
-        const displayThis = num1 + ' ' + op + ' ' + num2;
+        const displayThis = num1 + ' ' + `${op}` + ' ' + num2;
         display.innerText = displayThis;
     } else {
         display.innerText = res;
