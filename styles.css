@@ -57,9 +57,8 @@
 .screen-container {
     display: flex;
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: center;
     border: 2px solid blue;
-    max-width: 100%;
     overflow: hidden;
 }
 
@@ -71,8 +70,10 @@
     color: #D4D4D2;
     padding: 10px;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: clip;
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-shrink: 0;
+    min-width: 0;
 }
 
 .key-container {
