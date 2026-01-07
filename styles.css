@@ -21,7 +21,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px
+    gap: 10px;
+    flex-shrink: 0;
+    overflow: hidden;
 }
 
 .header {
@@ -36,4 +38,107 @@
     margin-bottom: 10px;
     border-radius: 25px;
     background-color: var(--grey);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.screen-container {
+    margin-top: 0px;
+    height: 30%;
+    width: 100%;
+    border-radius: 25px;
+    border: 1px solid red;
+    flex-shrink: 0;
+}
+
+.screen-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    border: 2px solid blue;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+
+.display {
+    font-size: 40px;
+    font-weight: 500;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #D4D4D2;
+    padding: 10px;
+    overflow-wrap: anywhere;
+    word-break: break-all;
+}
+
+.key-container {
+    /* border:1px solid red; */
+    border-radius: 25px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+}
+
+.row {
+    display: flex;
+    /* border: 1px solid red; */
+    border-radius: 25px;
+    flex-grow: 1;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.row .btn button {
+    height: 60px;
+    aspect-ratio: 1;
+    border: 0.5px solid white;   
+    /* border: 1px solid red; */
+    border-radius: 50%;
+    font-size: 30px;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-delete button,
+.btn-clear button,
+.btn-modulus button {
+    background-color: grey;
+}
+
+.btn-divide button,
+.btn-multiply button,
+.btn-minus button,
+.btn-plus button,
+.btn-equal button {
+    background-color: var(--orange);
+}
+
+.btn-1 button,
+.btn-2 button,
+.btn-3 button,
+.btn-4 button,
+.btn-5 button,
+.btn-6 button,
+.btn-7 button,
+.btn-8 button,
+.btn-9 button,
+.btn-negative button,
+.btn-0 button,
+.btn-dot button {
+    background-color: rgb(61, 61, 61);
+}
+
+.row .btn button:active {
+    transform: translate3d(-5px, -5px, -5px);
+    box-shadow: -5px 3px gold;
 }
