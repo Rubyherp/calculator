@@ -2,7 +2,7 @@
 let num1 = '';
 let op = '';
 let num2 = '';
-let res = '';
+// let res = '';
 
 const nums = document.querySelectorAll('.btn-num');
 const operator = document.querySelectorAll('.btn-op');
@@ -11,28 +11,23 @@ const display = document.querySelector('.display');
 
 nums.forEach((btn) => {
     btn.addEventListener('click', (e) => {
-        return numsHandler(e);
+        return numsDisplayHandler(e);
     })
 });
 
 operator.forEach((btn) => {
     btn.addEventListener('click', (e) => {
-        if (num1) {
-            op = e.target.innerText;
-            logResult();
-            logDisplay();
-        }
+        return operatorHandler(e);
     })
 });
 
 control.forEach((btn) => {
     btn.addEventListener('click',(e) => {
-        return checkControl(e);
+        return controlHandler(e);
     } )
 })
 
-
-function numsHandler(e) {
+function numsDisplayHandler(e) {
     if (e.target.innerText === '.') {
         if (!num1.includes('.') && !op){
             num1 = num1 + '.';
@@ -54,15 +49,36 @@ function numsHandler(e) {
     }
 }
 
-function checkControl(event) {
+function operatorHandler(e) {
+    if (num1) {
+        op = e.target.innerText;
+        logResult();
+        logDisplay();
+    } else if (num1 && op ) {
+        // res = operate(op, num1, num2);
+        const firstNum = num1;
+        const secondNum = num2;
+        const operator = op;
+        // const result = res;
+        reset();
+        num1 = operate(operator, firstNum, secondNum);
+        // num1 = result;
+        logDisplay();
+    }
+}
+
+function controlHandler(event) {
     if (event.target.innerText === 'del') {
-        if (!num2) {
-            num1 = num1.slice(0, -1)
+        if (!num2 && !op) {
+            num1 = num1.slice(0, -1);
             logResult();
             logDisplay();
-        } else {
-            num2 = num2.slice(0, -1)
+        } else if (num1 && op && num2){
+            num2 = num2.slice(0, -1);
             logResult();
+            logDisplay();
+        } else if (num1 && op && !num2) {
+            op = op.slice(0, -1);
             logDisplay();
         }
     } else if (event.target.innerText === 'C') {
@@ -84,7 +100,8 @@ function checkControl(event) {
             const firstNum = Number(num1);
             const secondNum = Number(num2);
             reset()
-            res = operate(operator, firstNum, secondNum);
+            // res = operate(operator, firstNum, secondNum);
+            num1 = operate(operator, firstNum, secondNum);
             logResult();
             logDisplay();
         } else if (op === '%') {
@@ -92,7 +109,8 @@ function checkControl(event) {
             const firstNum = Number(num1);
             const secondNum = 1;
             reset()
-            res = operate(operator, firstNum, secondNum);
+            // res = operate(operator, firstNum, secondNum);
+            num1 = operate(operator, firstNum, secondNum);
             logResult();
             logDisplay();
         }
@@ -127,16 +145,18 @@ function logResult() {
     console.log('Num1: ', num1);
     console.log('op: ', op);
     console.log('Num2: ', num2);
-    console.log('Result: ', res);
+    // console.log('Result: ', res);
 }
 
 function logDisplay() {
-    if (num1 || op || num2) {
-        const displayThis = num1 + ' ' + `${op}` + ' ' + num2;
-        display.innerText = displayThis;
-    } else {
-        display.innerText = res;
-    }
+    const displayThis = num1 + ' ' + `${op}` + ' ' + num2;
+    display.innerText = displayThis;
+    // if (num1 || op || num2) {
+    //     const displayThis = num1 + ' ' + `${op}` + ' ' + num2;
+    //     display.innerText = displayThis;
+    // } else {
+    //     display.innerText = num1;
+    // }
 }
 
 function logDisplayClear() {
